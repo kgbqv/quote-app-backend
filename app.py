@@ -12,6 +12,13 @@ def load_quotes():
 
 df_quotes = load_quotes()
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({
+        'message': 'Welcome to the Quote API. Use the /random-quote endpoint to get a random quote.'
+    })
+
+
 @app.route('/random-quote', methods=['GET'])
 def random_quote():
     random_row = df_quotes.sample(n=1).iloc[0]
